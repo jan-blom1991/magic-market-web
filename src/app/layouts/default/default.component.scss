@@ -1,0 +1,30 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+.main-container {
+  height: 100vh;
+
+  mat-drawer-container {
+    height: 100%;
+
+    mat-drawer {
+      background: linear-gradient(200deg, mat.get-color-from-palette($accent) 20%, mat.get-color-from-palette($error) 100%);
+      width: 16rem;
+      overflow: visible;
+      visibility: visible !important;
+      box-shadow: $border-shadow;
+    }
+
+    mat-drawer-content {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 2rem;
+      background: darken($base, 5%);
+      color: $text;
+    }
+  }
+}
+
+::ng-deep .mat-drawer-side {
+  border-right: none !important;
+}

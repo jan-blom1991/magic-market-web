@@ -1,0 +1,13 @@
+<div class="content-header-container">
+  <div *ngIf="messageData" class="message-container" [@toggleVisibility]="messageState" [ngClass]="determineMessageSeverity()">
+    <div class="main-message">
+      <div *ngIf="determineMessageSeverity() == 'success'">
+        <mat-icon class="material-symbols-outlined large">check_circle</mat-icon>
+      </div>
+      <div *ngIf="determineMessageSeverity() == 'error'">
+        <mat-icon class="material-symbols-outlined large">error</mat-icon>
+      </div>
+      <div style="flex-grow: 1;">{{messageData.message}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<article class="table-container">
+  <div class="table-toolbar">
+
+    <!-- Action buttons -->
+    <div *ngIf="isEditable" class="table-buttons">
+      <button mat-raised-button (click)="addData()">
+        <mat-icon class="material-symbols-outlined small">add</mat-icon>
+      </button>
+      <button mat-raised-button [disabled]="!dataSource.data.length" (click)="removeData()">
+        <mat-icon class="material-symbols-outlined small">remove</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Request Spinner -->
+  <div class="loading-container" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+    <ng-container [matColumnDef]="col.name" *ngFor="let col of columns">
+
+      <!-- Column header -->
+      <th mat-header-cell mat-sort-header *matHeaderCellDef [disabled]="!col.isSortable">
+        <span *ngIf="determineHasColumnHeader(col.type)">
+          {{col.header}}
+        </span>
+      </th>
+
+      <td mat-cell *matCellDef="let element" [class]="determineClass(col.type)">
+
+        <!-- Column for text field -->
+        <div *ngIf="col.type === columnType.TEXT">
+          {{element.values[col.key]}}
+        </div>
+
+        <!-- Column for hyperlink -->
+        <div *ngIf="col.type === columnType.HYPERLINK">
+          <a [routerLink]="[col.path, element.values[col.key]]">{{element.values[col.key]}}</a>
+        </div>
+
+        <!-- Column for image -->
+        <div *ngIf="col.type === columnType.IMAGE">
+          <img src="{{createFileUrl(element.values[col.key])}}" alt="" height="100">
+        </div>
+
+        <!-- Column for checkbox -->
+        <div *ngIf="col.type === columnType.CHECKBOX && isEditable">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(element) : null"
+                        [checked]="selection.isSelected(element)">
+          </mat-checkbox>
+        </div>
+
+        <!-- Column for button -->
+        <div *ngIf="col.type === columnType.BUTTON">
+          <button mat-icon-button (click)="col.action(element.index)">
+            <mat-icon>{{col.icon}}</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Dynamic rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Paginator -->
+  <mat-paginator *ngIf="isPageable"
+                 [length]="total"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 showFirstLastButtons>
+  </mat-paginator>
+</article>

@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}

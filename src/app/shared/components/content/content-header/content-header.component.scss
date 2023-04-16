@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+.content-header-container {
+  display: flex;
+  flex-direction: column;
+
+  .message-container {
+    margin-left: 4rem;
+    margin-right: 4rem;
+    overflow: hidden;
+    border-radius: 0.4rem;
+
+    &.success {
+      color: mat.get-color-from-palette($success);
+      background-color: mat.get-color-from-palette($success);
+      border: 1px solid mat.get-color-from-palette($success);
+    }
+
+    &.error {
+      color: mat.get-color-from-palette($success);
+      background-color: mat.get-color-from-palette($error);
+      border: 1px solid mat.get-color-from-palette($error);
+    }
+
+    .main-message {
+      display: flex;
+      height: 100%;
+      letter-spacing: 0.02rem;
+
+      div {
+        display: flex;
+        align-items: center;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+}

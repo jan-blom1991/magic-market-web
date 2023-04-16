@@ -1,0 +1,40 @@
+<div class="header-container">
+  <div>
+    <button (click)="menuToggle.emit()" mat-icon-button class="sidebar-button">
+      <mat-icon class="material-symbols-outlined large">menu</mat-icon>
+    </button>
+  </div>
+  <div class="header-search-bar">
+    <mat-icon class="material-symbols-outlined medium">search</mat-icon>
+    <input type="text" placeholder="Search..">
+  </div>
+  <div class="header-actions">
+    <button [routerLink]="path.MAINTAIN_PRODUCT" mat-icon-button class="header-button">
+      <mat-icon class="material-symbols-outlined medium">add</mat-icon>
+    </button>
+    <button mat-icon-button class="header-button">
+      <mat-icon class="material-symbols-outlined medium">shopping_basket</mat-icon>
+    </button>
+    <button mat-icon-button class="header-button" [matMenuTriggerFor]="menu">
+      <mat-icon class="material-symbols-outlined medium">account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button [routerLink]="path.LOGIN" mat-menu-item>
+        <mat-icon class="material-symbols-outlined medium">login</mat-icon>
+        <span>Login</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-symbols-outlined medium">app_registration</mat-icon>
+        <span>Register</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-symbols-outlined medium">settings</mat-icon>
+        <span>Settings</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon class="material-symbols-outlined medium">language</mat-icon>
+        <span>Language</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

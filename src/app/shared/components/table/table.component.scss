@@ -1,0 +1,59 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+}
+
+.table-container {
+  .table-toolbar {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+
+    .table-buttons {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+
+  .loading-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: opacify($base, 0.8);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  table {
+    background-color: transparent;
+
+    img {
+      padding: 0.5rem;
+      max-height: 5rem;
+      max-width: 5rem;
+    }
+
+    .table-column-checkbox {
+      width: 0.1%;
+      white-space: nowrap;
+    }
+
+    .table-column-button {
+      width: 0.1%;
+      white-space: nowrap;
+    }
+
+    .table-column-text {
+    }
+  }
+
+  mat-paginator {
+    background-color: transparent;
+  }
+}

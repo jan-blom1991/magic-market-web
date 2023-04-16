@@ -1,0 +1,37 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+}
+
+mat-nav-list {
+  color: $base;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  .sidebar-logo {
+    font-size: 1.4rem;
+    margin: 0 1rem;
+    font-weight: 200;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .sidebar-list-item {
+    color: $base;
+    height: 3.6rem;
+
+    .sidebar-list-item-header {
+      font-weight: 200;
+      padding-left: 1rem;
+      letter-spacing: 0.02rem;
+    }
+
+    &:hover {
+
+    }
+  }
+}

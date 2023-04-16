@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$base: #f3f3f3;
+$text: #828282;
+$primary: mat.define-palette(mat.$teal-palette);
+$accent: mat.define-palette(mat.$amber-palette);
+$info: mat.define-palette(mat.$blue-palette);
+$success: mat.define-palette(mat.$green-palette);
+$error: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    info: $info,
+    success: $success,
+    error: $error
+  ),
+  density: 0
+));
+
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($theme);
+
+// Emit styles for MatButton based on `$my-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+@include mat.button-theme($theme);
+
+$border-shadow: lightgray 0px 1px 0px, lightgray 0px 3px 9px, lightgray 0px 0px 18px;

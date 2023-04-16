@@ -1,0 +1,6 @@
+<button matRipple
+        [class]="determineClass()"
+        [disabled]="isDisabled"
+        (click)="stuff.emit($event)">
+  <ng-content></ng-content>
+</button>

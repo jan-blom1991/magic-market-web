@@ -1,0 +1,22 @@
+<div class="table-search-container">
+  <mat-form-field class="table-search-bar" subscriptSizing="dynamic">
+    <input type="tel" matInput placeholder="Search" name= "search" [(ngModel)]= "search">
+    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+  </mat-form-field>
+  <mat-form-field appearance="fill" subscriptSizing="dynamic">
+    <mat-label>Sort by</mat-label>
+    <mat-select (selectionChange)="sort()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let col of columns" [value]="col">{{col}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <app-button color="primary" appearance="stroked" shape="circle" (stuff)="toggleSortDirection()">
+    <mat-icon class="material-symbols-outlined medium" [style]="toggleSortDirection()">arrow_upward</mat-icon>
+  </app-button>
+  <app-button color="primary" appearance="stroked" shape="circle" (click)="toggleFilter()">
+    <mat-icon class="material-symbols-outlined medium">filter_alt</mat-icon>
+  </app-button>
+  <button mat-mini-fab (click)="toggleFilter()">
+    <mat-icon class="material-symbols-outlined medium">filter_alt</mat-icon>
+  </button>
+</div>

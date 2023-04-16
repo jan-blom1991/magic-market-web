@@ -1,0 +1,11 @@
+<app-content-block>
+  <app-content-section [columns]="1">
+    <app-content-group [contentWidth]="100">
+      <app-table-search [table]="tableData"></app-table-search>
+      <app-table [isEditable]="true"
+                 [isPageable]="true"
+                 [tableData]="tableData"
+                 (request)="createRequest($event)"></app-table>
+    </app-content-group>
+  </app-content-section>
+</app-content-block>

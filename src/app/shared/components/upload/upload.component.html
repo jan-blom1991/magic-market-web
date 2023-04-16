@@ -1,0 +1,30 @@
+<div class="image-dropzone">
+  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="selectFiles($event)">
+  <div>
+    <span class="material-symbols-outlined">cloud_upload</span>
+    <span>Drag and drop files here, or <label for="fileDropRef">Browse Files</label></span>
+  </div>
+</div>
+<div class="upload-card-container">
+  <mat-card class="upload-card" *ngFor="let upload of uploads let i = index;">
+    <mat-card-content>
+      <img src="{{upload.url}}" alt="">
+      <div style="flex-grow: 1">
+        <div class="upload-card-title">{{upload.name}}</div>
+        <div class="upload-card-subtitle">{{upload.size/1000}} kb</div>
+      </div>
+      <div *ngIf="upload.done" matTooltip="This file has been uploaded" class="upload-card-success">
+        <span class="material-symbols-outlined large">check_circle</span>
+      </div>
+      <button *ngIf="upload.done" mat-icon-button class="upload-card-delete" matTooltip="Delete this file" (click)="deleteFile(i)">
+        <span class="material-symbols-outlined large">delete</span>
+      </button>
+      <button *ngIf="!upload.done" mat-icon-button class="upload-card-cancel" matTooltip="Cancel uploading this file" (click)="deleteFile(i)">
+        <span class="material-symbols-outlined large">cancel</span>
+      </button>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="determinate" value="{{upload.progress}}"></mat-progress-bar>
+    </mat-card-footer>
+  </mat-card>
+</div>
