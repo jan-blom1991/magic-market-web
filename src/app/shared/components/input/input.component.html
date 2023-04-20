@@ -1,1 +1,12 @@
-<p>input works!</p>
+<div class="prefix-container">
+  <ng-content></ng-content>
+</div>
+<div class="input-container">
+  <input [id]="label" [type]="type" [readOnly]="readOnly" [required]="required" placeholder=" ">
+  <label [for]="label" class="input-label">{{label}}</label>
+</div>
+<div class="suffix-container">
+  <span *ngIf="required">*</span>
+  <mat-icon *ngIf="required && valid" class="material-symbols-outlined small">done</mat-icon>
+  <mat-icon *ngIf="required && !valid" class="material-symbols-outlined small">exclamation</mat-icon>
+</div>

@@ -3,12 +3,12 @@
 
     <!-- Action buttons -->
     <div *ngIf="isEditable" class="table-buttons">
-      <button mat-raised-button (click)="addData()">
+      <app-button color="primary" shape="rectangle" appearance="stroked" (click)="addData()">
         <mat-icon class="material-symbols-outlined small">add</mat-icon>
-      </button>
-      <button mat-raised-button [disabled]="!dataSource.data.length" (click)="removeData()">
+      </app-button>
+      <app-button color="primary" shape="rectangle" appearance="stroked" (click)="removeData()">
         <mat-icon class="material-symbols-outlined small">remove</mat-icon>
-      </button>
+      </app-button>
     </div>
   </div>
 

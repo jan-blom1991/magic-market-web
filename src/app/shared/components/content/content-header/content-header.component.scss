@@ -13,20 +13,20 @@
 
     &.success {
       color: mat.get-color-from-palette($success);
-      background-color: mat.get-color-from-palette($success);
+      background-color: mat.get-color-from-palette($success, 100);
       border: 1px solid mat.get-color-from-palette($success);
     }
 
     &.error {
-      color: mat.get-color-from-palette($success);
-      background-color: mat.get-color-from-palette($error);
+      color: mat.get-color-from-palette($error);
+      background-color: mat.get-color-from-palette($error, 100);
       border: 1px solid mat.get-color-from-palette($error);
     }
 
     .main-message {
       display: flex;
       height: 100%;
-      letter-spacing: 0.02rem;
+      letter-spacing: 0.4px;
 
       div {
         display: flex;

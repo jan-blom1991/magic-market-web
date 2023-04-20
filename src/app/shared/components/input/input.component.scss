@@ -1,0 +1,81 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+  display: flex;
+  height: 3rem;
+  width: 100%;
+  border-bottom: 1px solid mat.get-color-from-palette($primary);;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem 0.25rem;
+
+  .prefix-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 1.25rem;
+    user-select: none;
+  }
+
+  .input-container {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    height: 2rem;
+    font-size: 1rem;
+    user-select: none;
+
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: inherit;
+      line-height: 2rem;
+      font-size: inherit;
+      user-select: none;
+      transition: all 0.2s;
+    }
+
+    input {
+      height: 2rem;
+      width: 100%;
+      line-height: 1.5rem;
+      font-family: Quicksand, sans-serif;
+      font-size: inherit;
+      color: $text;
+      background-color: transparent;
+      border: none;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      &:focus ~ label, &:not(:placeholder-shown) ~ label {
+        top: -0.75rem;
+        height: 0.75rem;
+        line-height: 0.75rem;
+        font-size: 0.75rem;
+        color: mat.get-color-from-palette($primary);
+      }
+    }
+  }
+
+  .suffix-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    user-select: none;
+    color: mat.get-color-from-palette($primary);
+  }
+
+  &:focus-within {
+    border-bottom: 1px solid mat.get-color-from-palette($primary);
+    color: mat.get-color-from-palette($primary);
+  }
+}

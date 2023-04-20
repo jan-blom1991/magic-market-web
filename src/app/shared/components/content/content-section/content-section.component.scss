@@ -2,6 +2,9 @@
 @import "src/styles/theme";
 
 :host {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   background: $base;
   border-radius: 0.4rem;
   padding: 2rem;

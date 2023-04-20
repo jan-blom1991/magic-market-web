@@ -22,9 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {RouterModule} from '@angular/router';
 import {ContentHeaderComponent} from './components/content/content-header/content-header.component';
 import {ContentSectionComponent} from './components/content/content-section/content-section.component';
-import {ButtonComponent} from './components/button/button/button.component';
-import {ActionComponent} from './components/button/action/action.component';
-import {ContentGroupComponent} from './components/content/content-group/content-group.component';
+import {ButtonComponent} from './components/button/button.component';
+import {ActionComponent} from './components/action/action.component';
 import {UploadComponent} from './components/upload/upload.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
@@ -46,7 +45,6 @@ import { InputComponent } from './components/input/input.component';
     ContentSectionComponent,
     ButtonComponent,
     ActionComponent,
-    ContentGroupComponent,
     UploadComponent,
     TableSearchComponent,
     InputComponent
@@ -78,17 +76,17 @@ import { InputComponent } from './components/input/input.component';
     MatSortModule,
     MatRippleModule
   ],
-    exports: [
-        HeaderComponent,
-        SidebarComponent,
-        FooterComponent,
-        TableComponent,
-        ContentHeaderComponent,
-        ContentSectionComponent,
-        ContentGroupComponent,
-        UploadComponent,
-        TableSearchComponent,
-        ButtonComponent
-    ]
+  exports: [
+    HeaderComponent,
+    SidebarComponent,
+    FooterComponent,
+    TableComponent,
+    ContentHeaderComponent,
+    ContentSectionComponent,
+    UploadComponent,
+    TableSearchComponent,
+    ButtonComponent,
+    InputComponent,
+  ]
 })
 export class SharedModule { }

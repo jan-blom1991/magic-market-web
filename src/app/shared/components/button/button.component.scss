@@ -1,0 +1,97 @@
+@use 'node_modules/@angular/material/index' as mat;
+@import "src/styles/theme";
+
+@mixin color($color: $primary) {
+  box-shadow: mat.get-color-from-palette($color, 700) 0 2px 7px -4px;
+
+  &.appearance-filled {
+    color: $base;
+    background-image:
+      linear-gradient(-180deg, mat.get-color-from-palette($color, 300),
+      mat.get-color-from-palette($color, 500));
+    border: 1px solid mat.get-color-from-palette($color, 400);
+  }
+
+  &.appearance-stroked {
+    color: mat.get-color-from-palette($color);
+    background-color: $base;
+    border: 1px solid mat.get-color-from-palette($color);
+  }
+
+  &:hover {
+    box-shadow: mat.get-color-from-palette($color, 700) 0 2px 10px -4px;
+  }
+
+  ::ng-deep.mat-ripple-element {
+    background-color: mat.get-color-from-palette($color, 100) !important;
+    opacity: 5%;
+  }
+}
+
+:host {
+  display: inline-block;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    font-family: Quicksand, sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    box-sizing: border-box;
+    gap: 0.2rem;
+    cursor: pointer;
+    user-select: none;
+    background-position: center;
+
+    &.size-small {
+      height: 2.5rem;
+    }
+
+    &.size-large {
+      height: 3rem;
+    }
+
+    &.color-primary {
+      @include color($primary);
+    }
+
+    &.color-accent {
+      @include color($accent);
+    }
+
+    &.color-info {
+      @include color($info);
+    }
+
+    &.color-success {
+      @include color($success);
+    }
+
+    &.color-error {
+      @include color($error);
+    }
+
+    &.shape-circle {
+      padding: 0;
+      border-radius: 50%;
+
+      &.size-small {
+        width: 2.5rem;
+      }
+
+      &.size-large {
+        width: 3rem;
+      }
+    }
+
+    &.shape-rectangle {
+      padding: 0 1rem;
+      border-radius: 5px;
+    }
+  }
+}

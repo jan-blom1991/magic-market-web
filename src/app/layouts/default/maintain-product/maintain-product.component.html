@@ -1,7 +1,7 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <app-content-block>
     <app-content-section [columns]="2" [formGroup]="productForm">
-      <app-content-group [title]="'General information'" [contentWidth]="100">
+      <div>
         <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>
           <mat-select formControlName="category" (selectionChange)="onChangeProductCategory()">
@@ -29,8 +29,8 @@
           <mat-label>Description</mat-label>
           <textarea matInput formControlName="description" style="height: 8rem"></textarea>
         </mat-form-field>
-      </app-content-group>
-    <app-content-group formGroupName="card" [title]="'Magic card information'" *ngIf="showCardFields">
+      </div>
+    <div formGroupName="card" *ngIf="showCardFields">
       <mat-form-field appearance="outline">
         <mat-label>Color</mat-label>
         <mat-select formControlName="color">
@@ -87,10 +87,10 @@
         <mat-label>Loyalty</mat-label>
         <input matInput formControlName="loyalty" type="number" placeholder="0">
       </mat-form-field>
-    </app-content-group>
-    <app-content-group [title]="'Upload an image'">
+    </div>
+    <div [title]="'Upload an image'">
       <app-upload (fileGroupCodeEvent)="updateProductFiles($event)" [resetFormSubject]="resetFormSubject"></app-upload>
-    </app-content-group>
+    </div>
     </app-content-section>
     <div class="bottom-actions-container">
       <button mat-flat-button color="primary" type="submit">Save</button>
