@@ -1,0 +1,17 @@
+<div class="prefix-container">
+  <ng-content></ng-content>
+</div>
+<div class="select-container">
+  <input [id]="label" placeholder=" " [value]="value" [size]="determineSize()" [required]="required" readonly>
+  <label [for]="label" class="input-label">{{label}}</label>
+  <div class="options-container">
+    <div class="option-content" *ngFor="let option of options" (click)="setValue(option)">
+      <span>{{option}}</span>
+      <mat-icon *ngIf="option==value">check</mat-icon>
+    </div>
+  </div>
+</div>
+<div class="suffix-container">
+  <mat-icon class="material-symbols-outlined size-small dropdown-icon">arrow_drop_down</mat-icon>
+  <span class="required-asterisk" *ngIf="required">*</span>
+</div>

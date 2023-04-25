@@ -1,27 +1,27 @@
-<article class="table-container">
-  <div class="table-toolbar">
+<div class="table-toolbar">
 
-    <!-- Action buttons -->
-    <div *ngIf="isEditable" class="table-buttons">
-      <app-button color="primary" shape="rectangle" appearance="stroked" (click)="addData()">
-        <mat-icon class="material-symbols-outlined small">add</mat-icon>
-      </app-button>
-      <app-button color="primary" shape="rectangle" appearance="stroked" (click)="removeData()">
-        <mat-icon class="material-symbols-outlined small">remove</mat-icon>
-      </app-button>
-    </div>
+  <!-- Action buttons -->
+  <div *ngIf="isEditable" class="table-buttons">
+    <app-button color="primary" shape="rectangle" appearance="stroked" (click)="addData()">
+      <mat-icon class="material-symbols-outlined size-small">add</mat-icon>
+    </app-button>
+    <app-button color="primary" shape="rectangle" appearance="stroked" (click)="removeData()">
+      <mat-icon class="material-symbols-outlined size-small">remove</mat-icon>
+    </app-button>
   </div>
+</div>
 
+<div class="table-container">
   <!-- Request Spinner -->
   <div class="loading-container" *ngIf="isLoading">
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <span class="table-loader" *ngIf="isLoading"></span>
   </div>
 
   <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
-    <ng-container [matColumnDef]="col.name" *ngFor="let col of columns">
+    <ng-container [matColumnDef]="col.name" *ngFor="let col of tableData.columns">
 
       <!-- Column header -->
-      <th mat-header-cell mat-sort-header *matHeaderCellDef [disabled]="!col.isSortable">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef [disabled]="!col.isSortable || isLoading">
         <span *ngIf="determineHasColumnHeader(col.type)">
           {{col.header}}
         </span>
@@ -41,7 +41,7 @@
 
         <!-- Column for image -->
         <div *ngIf="col.type === columnType.IMAGE">
-          <img src="{{createFileUrl(element.values[col.key])}}" alt="" height="100">
+          <img src="{{createFileUrl(element.values[col.key])}}" alt="" height="60">
         </div>
 
         <!-- Column for checkbox -->
@@ -54,9 +54,9 @@
 
         <!-- Column for button -->
         <div *ngIf="col.type === columnType.BUTTON">
-          <button mat-icon-button (click)="col.action(element.index)">
-            <mat-icon>{{col.icon}}</mat-icon>
-          </button>
+          <app-button shape="circle" appearance="stroked" (click)="col.action(element.index)">
+            <mat-icon class="material-symbols-outlined size-small">{{col.icon}}</mat-icon>
+          </app-button>
         </div>
       </td>
     </ng-container>
@@ -68,9 +68,9 @@
 
   <!-- Paginator -->
   <mat-paginator *ngIf="isPageable"
-                 [length]="total"
+                 [length]="tableData.total"
                  [pageSize]="pageSize"
                  [pageSizeOptions]="pageSizeOptions"
                  showFirstLastButtons>
   </mat-paginator>
-</article>
+</div>

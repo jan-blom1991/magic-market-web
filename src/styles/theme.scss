@@ -30,4 +30,5 @@ $theme: mat.define-light-theme((
 // emit any typography styles.
 @include mat.button-theme($theme);
 
-$border-shadow: lightgray 0px 1px 0px, lightgray 0px 3px 9px, lightgray 0px 0px 18px;
+$border-shadow: darken($base, 15%) 0 2px 12px -3px;
+$border-radius: 0.375rem;

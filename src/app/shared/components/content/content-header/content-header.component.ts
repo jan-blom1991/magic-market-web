@@ -23,6 +23,7 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
 })
 
 export class ContentHeaderComponent implements OnInit {
+  @Output() menuToggle: EventEmitter<any> = new EventEmitter();
   messageData: MessageData;
   messageState = 'hidden';
 

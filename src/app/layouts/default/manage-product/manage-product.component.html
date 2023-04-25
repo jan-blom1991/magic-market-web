@@ -1,9 +1,8 @@
 <app-content-block>
-  <app-content-section [columns]="1">
+  <app-content-section>
     <app-table [isEditable]="true"
                [isPageable]="true"
                [tableData]="tableData"
-               (request)="createRequest($event)"
     ></app-table>
   </app-content-section>
 </app-content-block>

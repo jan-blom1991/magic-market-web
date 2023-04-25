@@ -1,77 +1,86 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatSort, SortDirection} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
 import {FileData} from "../../../domain/file-data";
 import {ColumnType} from "../../../domain/column-type";
-import {Column, Row, TableData} from "../../../domain/table-data";
-import {MatTableDataSource} from "@angular/material/table";
+import {Row, TableData} from "../../../domain/table-data";
 import {merge} from "rxjs";
+import {TableDataService} from "../../../services/table-data.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {
-  public columns: Column<T>[] = [];
+export class TableComponent<T> implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource<Row<T>>([])
   public selection = new SelectionModel<Row<T>>(true, []);
+  public isLoading = false;
   public displayedColumns: string[];
   public columnType = ColumnType;
-  public isLoading = false;
-  public total = 0;
-
-  @Input() isEditable = false;
-  @Input() isPageable = false;
-  @Input() pageSizeOptions: number[] = [5, 10, 15];
-  @Input() pageSize = this.pageSizeOptions[1];
-  @Input() tableData: TableData<T>;
-  // @Input() set tableData(tableData: TableData<T>) {
-  //   this.dataSource = new MatTableDataSource<any>(tableData.rows);
-  //   this.columns = tableData.columns;
-  //   this.total = tableData.total;
-  //   this.isLoading = false;
-  // }
-
-  @Output() request: EventEmitter<TableDataRequest> = new EventEmitter();
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
+  @Input() tableData: TableData<T>;
+  @Input() isEditable = false;
+  @Input() isPageable = false;
+  @Input() pageSizeOptions: number[] = [5, 10, 15];
+  @Input() pageSize = this.pageSizeOptions[1];
+
+  constructor(
+    private tableDataService: TableDataService,
+    private changeDetector: ChangeDetectorRef
+  ) { }
+
   ngOnInit(): void {
-    this.columns = this.tableData.columns;
-    this.displayedColumns = this.columns.map(column => column.name);
+    this.displayedColumns = this.tableData.columns.map(column => column.name);
+
+    this.tableDataService.data$.subscribe(data => {
+      if (data) {
+        this.isLoading = false;
+        this.fillRows(data);
+      }
+    });
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
-
     merge(this.sort.sortChange, this.paginator.page)
       .subscribe(() => {
         this.isLoading = true;
-        this.request.emit({
+        this.tableDataService.sendRequest({
           sortColumn: this.sort.active,
           sortOrder: this.sort.direction,
           pageIndex: this.paginator.pageIndex,
           pageSize: this.pageSize
         });
       });
+
+    this.sort.sortChange.subscribe(() => {
+      this.paginator.pageIndex = 0
+      this.tableData.rows = [];
+    });
+
+    this.sort.active = this.tableData.columns.find(column => column.isSortable).name;
+    this.sort.direction = 'desc';
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.sort.sortChange.emit();
+    this.changeDetector.detectChanges();
   }
 
-  removeData() {
+  public fillRows(data: any) {
+    data.items.forEach(element => {
+      const row = new Row<T>();
+      row.index = data.items.indexOf(element);
+      row.values = element;
+      this.tableData.rows.push(row);
+    });
+
+    this.tableData.total = data.total;
+    this.dataSource.data = this.tableData.rows;
   }
 
   createFileUrl(fileData: FileData): string {
@@ -81,7 +90,6 @@ export class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {
   determineHasColumnHeader(type: ColumnType): boolean {
     return type === ColumnType.TEXT
       || type === ColumnType.HYPERLINK
-      || type === ColumnType.IMAGE;
   }
 
   determineClass(type: ColumnType): string {
@@ -100,11 +108,9 @@ export class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {
   }
 
   addData() {
-
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['tableData'].currentValue);
+  removeData() {
   }
 }
 

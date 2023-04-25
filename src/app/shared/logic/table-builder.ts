@@ -37,12 +37,11 @@ export class TableBuilder<T extends object> {
     return this;
   }
 
-  public addImageColumn(key: keyof T, header: string): TableBuilder<T> {
+  public addImageColumn(key: keyof T): TableBuilder<T> {
     this.data.columns.push(
       new Column({
         key: key,
         name: key as string,
-        header: header,
         type: ColumnType.IMAGE,
         isSortable: false
       })

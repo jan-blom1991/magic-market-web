@@ -1,4 +1,17 @@
 <div class="content-header-container">
+  <app-button color="primary" shape="rectangle" appearance="stroked" (click)="menuToggle.emit()">
+    <mat-icon class="size-medium">menu</mat-icon>
+  </app-button>
+  <app-button color="accent" shape="circle" appearance="stroked">
+    <mat-icon class="size-medium">chevron_left</mat-icon>
+  </app-button>
+  <app-button color="accent" shape="circle" appearance="stroked">
+    <mat-icon class="size-medium">chevron_right</mat-icon>
+  </app-button>
+  <app-input style="width: 100%" name="search" noLabel>
+    <mat-icon class="size-medium">search</mat-icon>
+  </app-input>
+
   <div *ngIf="messageData" class="message-container" [@toggleVisibility]="messageState" [ngClass]="determineMessageSeverity()">
     <div class="main-message">
       <div *ngIf="determineMessageSeverity() == 'success'">

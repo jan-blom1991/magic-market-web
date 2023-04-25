@@ -1,16 +1,17 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <app-content-block>
-    <app-content-section [formGroup]="loginForm" style="width: 30rem">
-      <app-input type="text" label="E-mail address" required>
-        <mat-icon class="material-symbols-outlined small">person</mat-icon>
+  <app-content-block title="Login">
+    <app-content-section [formGroup]="loginForm" width="40">
+      <app-input type="text" name="E-mail address" required>
+        <mat-icon class="size-small">person</mat-icon>
       </app-input>
-      <app-input type="password" label="Password">
-        <mat-icon class="material-symbols-outlined small">lock</mat-icon>
+      <app-input type="password" name="Password">
+        <mat-icon class="size-small">lock</mat-icon>
       </app-input>
+      <div style="font-size: 0.875rem">Don't have an account? Register <a>here!</a></div>
       <app-button color="primary"
                   shape="rectangle"
                   appearance="filled"
-                  style="width: 100%; margin-top: 1rem">
+                  style="margin-top: 1rem">
         Login
       </app-button>
     </app-content-section>

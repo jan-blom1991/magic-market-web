@@ -4,67 +4,15 @@
 .header-container {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 4rem;
 
-  .sidebar-button {
-    background: $base;
-    height: 50px;
-    width: 50px;
-    box-shadow: $border-shadow;
-  }
-
-  .header-title {
-    display: flex;
-    align-items: center;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin: 0 3rem;
-  }
-
-  .header-search-bar {
-    width: 100%;
-
-    mat-icon {
-      position: relative;
-      transform: translateX(2.2rem);
-    }
-
-    input {
-      width: 100%;
-      font: inherit;
-      font-size: 0.9rem;
-      color: $text;
-      border: none;
-      background: $base;
-      box-shadow: $border-shadow;
-      height: 2.4rem;
-      border-radius: 1.2rem;
-      padding: 0 3rem;
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
   .header-actions {
+
     button {
+      color: $base;
       margin-left: 3rem;
     }
-  }
-
-  div {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .header-button {
-    background: transparent;
-  }
-
-  mat-icon {
-    font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;
   }
 }

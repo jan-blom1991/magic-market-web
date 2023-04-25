@@ -3,6 +3,16 @@
 
 :host {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-color: transparent;
+  align-items: center;
+  border-radius: $border-radius;
+  background: $base;
+
+  .content-title {
+    padding-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: mat.get-color-from-palette($primary);
+  }
 }

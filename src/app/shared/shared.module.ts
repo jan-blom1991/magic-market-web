@@ -34,6 +34,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSortModule} from "@angular/material/sort";
 import { InputComponent } from './components/input/input.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { InputComponent } from './components/input/input.component';
     ActionComponent,
     UploadComponent,
     TableSearchComponent,
-    InputComponent
+    InputComponent,
+    SelectComponent
   ],
   imports: [
     CommonModule,
@@ -76,17 +78,18 @@ import { InputComponent } from './components/input/input.component';
     MatSortModule,
     MatRippleModule
   ],
-  exports: [
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    TableComponent,
-    ContentHeaderComponent,
-    ContentSectionComponent,
-    UploadComponent,
-    TableSearchComponent,
-    ButtonComponent,
-    InputComponent,
-  ]
+    exports: [
+        HeaderComponent,
+        SidebarComponent,
+        FooterComponent,
+        TableComponent,
+        ContentHeaderComponent,
+        ContentSectionComponent,
+        UploadComponent,
+        TableSearchComponent,
+        ButtonComponent,
+        InputComponent,
+        SelectComponent,
+    ]
 })
 export class SharedModule { }

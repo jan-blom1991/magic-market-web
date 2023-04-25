@@ -1,8 +1,14 @@
 <app-content-block>
-  <app-content-section [columns]="1">
-      <app-table [isEditable]="true"
-                 [isPageable]="true"
-                 [tableData]="tableData"
-                 (request)="createRequest($event)"></app-table>
+  <app-content-section>
+    <div style="display: flex; gap: 2rem;">
+      <app-select [options]="[0,1,2]" label="Numbers" [required]="true"></app-select>
+      <app-select [options]="['sdlnvkdvlKMDV', 'aSDASDAS', 'QWwdasfw', 'adad', 'sekfjkf', 'fkjsfe']" label="Words" [required]="true">
+        <mat-icon>euro</mat-icon>
+      </app-select>
+    </div>
+    <app-table [isEditable]="true"
+               [isPageable]="true"
+               [tableData]="tableData">
+    </app-table>
   </app-content-section>
 </app-content-block>

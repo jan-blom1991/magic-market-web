@@ -2,11 +2,10 @@
   <ng-content></ng-content>
 </div>
 <div class="input-container">
-  <input [id]="label" [type]="type" [readOnly]="readOnly" [required]="required" placeholder=" ">
-  <label [for]="label" class="input-label">{{label}}</label>
+  <input [id]="name" [type]="type" [readOnly]="readOnly" [required]="required" placeholder=" ">
+  <label *ngIf="!noLabel" [for]="name" class="input-label">{{name}}</label>
 </div>
 <div class="suffix-container">
-  <span *ngIf="required">*</span>
-  <mat-icon *ngIf="required && valid" class="material-symbols-outlined small">done</mat-icon>
-  <mat-icon *ngIf="required && !valid" class="material-symbols-outlined small">exclamation</mat-icon>
+  <span *ngIf="required" class="required-asterisk">*</span>
+  <mat-icon *ngIf="required && valid" class="material-symbols-outlined size-small">done</mat-icon>
 </div>

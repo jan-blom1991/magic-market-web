@@ -6,7 +6,7 @@
   position: relative;
   height: 3rem;
   border-bottom: 1px solid mat.get-color-from-palette($primary);
-  padding: 0.75rem 0.75rem 0.75rem;
+  padding: 1rem 0.75rem 0.75rem;
   font-size: 1rem;
   user-select: none;
   gap: 0.5rem;
@@ -15,18 +15,24 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    height: 1.5rem;
+    height: 1.25rem;
+
+    ::ng-deep mat-icon {
+      font-size: 1.125rem;
+      height: 1.125rem;
+      width: 1.125rem;
+    }
 
     &:empty {
       display: none;
     }
   }
 
-  .input-container {
+  .select-container {
     position: relative;
     display: flex;
-    height: 1.5rem;
-    line-height: 1.5rem;
+    height: 1.25rem;
+    line-height: 1.25rem;
     width: 100%;
 
     label {
@@ -48,7 +54,6 @@
       background: transparent;
       border: none;
       cursor: pointer;
-      width: 100%;
 
       &:focus-visible {
         outline: none;
@@ -56,10 +61,49 @@
 
       &:focus ~ label, &:not(:placeholder-shown) ~ label {
         top: -0.75rem;
-        height: 0.75rem;
-        font-size: 0.75rem;
-        line-height: 0.75rem;
+        height: 0.625rem;
+        font-size: 0.625rem;
+        line-height: 0.625rem;
         color: mat.get-color-from-palette($primary);
+      }
+
+      &:focus ~ .options-container {
+        max-height: 9rem;
+        opacity: 1;
+        overflow-y: auto;
+      }
+    }
+
+    .options-container {
+      position: absolute;
+      top: 2rem;
+      left: -0.75rem;
+      right: -2.5rem;
+      max-height: 0;
+      z-index: 1;
+      opacity: 0;
+      cursor: pointer;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      transition: max-height 0.2s ease-in, opacity 0.2s ease-in;
+      border-radius: 0 0 $border-radius $border-radius;
+      background: $base;
+
+      .option-content {
+        display: flex;
+        align-items: center;
+        height: 2.25rem;
+        padding-left: 0.75rem;
+        color: $text;
+        gap: 0.5rem;
+
+        mat-icon {
+          color: mat.get-color-from-palette($accent);
+        }
+
+        &:hover {
+          background: darken($base, 5%);
+        }
       }
     }
   }
@@ -73,10 +117,14 @@
     width: 1.25rem;
     color: mat.get-color-from-palette($primary);
 
+    .dropdown-icon {
+      transition: all 0.2s;
+    }
+
     .required-asterisk {
       position: absolute;
-      top: -0.5rem;
-      right: -0.5rem;
+      top: -0.75rem;
+      right: -0.25rem;
       height: inherit;
       font-size: 1.125rem;
     }
@@ -85,10 +133,9 @@
   &:focus-within {
     border-bottom: 1px solid mat.get-color-from-palette($primary);
     color: mat.get-color-from-palette($primary);
-  }
 
-  &[noLabel] {
-    height: 2.5rem;
-    padding: 0.5rem 0.75rem 0.5rem;
+    ~& .dropdown-icon {
+      transform: scaleY(-1);
+    }
   }
 }

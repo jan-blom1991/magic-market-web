@@ -3,37 +3,41 @@
 
 .content-header-container {
   display: flex;
-  flex-direction: column;
+  padding: 1rem;
+  border-radius: $border-radius;
+  margin-bottom: 1rem;
+  background: $base;
+  gap: 1rem;
 
-  .message-container {
-    margin-left: 4rem;
-    margin-right: 4rem;
-    overflow: hidden;
-    border-radius: 0.4rem;
-
-    &.success {
-      color: mat.get-color-from-palette($success);
-      background-color: mat.get-color-from-palette($success, 100);
-      border: 1px solid mat.get-color-from-palette($success);
-    }
-
-    &.error {
-      color: mat.get-color-from-palette($error);
-      background-color: mat.get-color-from-palette($error, 100);
-      border: 1px solid mat.get-color-from-palette($error);
-    }
-
-    .main-message {
-      display: flex;
-      height: 100%;
-      letter-spacing: 0.4px;
-
-      div {
-        display: flex;
-        align-items: center;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-    }
-  }
+  //.message-container {
+  //  margin-left: 4rem;
+  //  margin-right: 4rem;
+  //  overflow: hidden;
+  //  border-radius: 0.4rem;
+  //
+  //  &.success {
+  //    color: mat.get-color-from-palette($success);
+  //    background-color: mat.get-color-from-palette($success, 100);
+  //    border: 1px solid mat.get-color-from-palette($success);
+  //  }
+  //
+  //  &.error {
+  //    color: mat.get-color-from-palette($error);
+  //    background-color: mat.get-color-from-palette($error, 100);
+  //    border: 1px solid mat.get-color-from-palette($error);
+  //  }
+  //
+  //  .main-message {
+  //    display: flex;
+  //    height: 100%;
+  //    letter-spacing: 0.4px;
+  //
+  //    div {
+  //      display: flex;
+  //      align-items: center;
+  //      padding-left: 1rem;
+  //      padding-right: 1rem;
+  //    }
+  //  }
+  //}
 }

@@ -1,6 +1,6 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <app-content-block>
-    <app-content-section [columns]="2" [formGroup]="productForm">
+    <app-content-section [formGroup]="productForm">
       <div>
         <mat-form-field appearance="outline">
           <mat-label>Category</mat-label>

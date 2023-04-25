@@ -4,7 +4,7 @@ import {Path} from "../../../domain/path";
 import {Icon} from "../../../domain/icon";
 import {TableData} from "../../../domain/table-data";
 import {TableBuilder} from "../../../shared/logic/table-builder";
-import {TableDataRequest} from "../../../shared/components/table/table.component";
+import {TableDataService} from "../../../services/table-data.service";
 
 @Component({
   selector: 'app-home',
@@ -17,36 +17,42 @@ export class HomeComponent implements OnInit, Routed {
   tableData: TableData<TestObject>;
 
   testParent: TestParent = {
-    items: [{test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 10, id: 1, name: 'Henk'},
-    {test: 'hi', number: 20, id: 2, name: 'Eva'},
-    {test: 'hi', number: 30, id: 3, name: 'Hans'},
-    {test: 'hi', number: 40, id: 4, name: 'Anita'},
-    {test: 'hi', number: 50, id: 5, name: 'Piet'}],
+    items: [
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 10, id: 1, name: 'Henk'},
+      {test: 'hi', number: 20, id: 2, name: 'Eva'},
+      {test: 'hi', number: 30, id: 3, name: 'Hans'},
+      {test: 'hi', number: 40, id: 4, name: 'Anita'},
+      {test: 'hi', number: 50, id: 5, name: 'Piet'}
+    ],
     total: 28
     }
+
+
+  constructor(private tableDataService: TableDataService) {
+  }
 
   ngOnInit(): void {
     this.tableData = new TableBuilder<TestObject>()
@@ -56,14 +62,14 @@ export class HomeComponent implements OnInit, Routed {
       .addTextColumn('name', 'Name', true)
       .addButtonColumn('test', Icon.ADD, this.testFunction)
       .build();
+
+    this.tableDataService.request$.subscribe(() => {
+      this.tableDataService.updateData(this.testParent);
+    })
   }
 
   testFunction(index: number): void {
     console.log(this.tableData);
-  }
-
-  createRequest(request: TableDataRequest) {
-
   }
 }
 export interface TestParent {
