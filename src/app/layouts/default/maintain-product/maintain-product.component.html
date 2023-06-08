@@ -1,15 +1,11 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
   <app-content-block>
-    <app-content-section [formGroup]="productForm">
+    <app-content-section [formGroup]="productForm" width="80">
       <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Category</mat-label>
-          <mat-select formControlName="category" (selectionChange)="onChangeProductCategory()">
-            <mat-option [value]="category" *ngFor="let category of productCategories">
-              {{category}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <app-input type="text" name="Name" required>
+          <mat-icon class="size-small"></mat-icon>
+        </app-input>
+        <app-select [options]="productCategories" label="Category" required></app-select>
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name">
@@ -30,67 +26,67 @@
           <textarea matInput formControlName="description" style="height: 8rem"></textarea>
         </mat-form-field>
       </div>
-    <div formGroupName="card" *ngIf="showCardFields">
-      <mat-form-field appearance="outline">
-        <mat-label>Color</mat-label>
-        <mat-select formControlName="color">
-          <mat-option [value]="color" *ngFor="let color of cardColors">
-            {{color}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <div class="form-field-group">
+      <div formGroupName="card" *ngIf="showCardFields">
         <mat-form-field appearance="outline">
-          <mat-label>Type</mat-label>
-          <mat-select formControlName="type">
-            <mat-option [value]="type" *ngFor="let type of cardTypes">
-              {{type}}
+          <mat-label>Color</mat-label>
+          <mat-select formControlName="color">
+            <mat-option [value]="color" *ngFor="let color of cardColors">
+              {{color}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <div class="form-field-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="type">
+              <mat-option [value]="type" *ngFor="let type of cardTypes">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Subtype</mat-label>
+            <input matInput formControlName="subtype">
+          </mat-form-field>
+        </div>
         <mat-form-field appearance="outline">
-          <mat-label>Subtype</mat-label>
-          <input matInput formControlName="subtype">
+          <mat-label>Converted mana cost</mat-label>
+          <input matInput formControlName="manaCost" type="number" placeholder="0">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Set</mat-label>
+          <input matInput formControlName="set">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Oracle text</mat-label>
+          <textarea matInput formControlName="oracleText" style="height: 4rem"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Flavour text</mat-label>
+          <textarea matInput formControlName="flavourText" style="height: 4rem"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Artist</mat-label>
+          <input matInput formControlName="artist">
+        </mat-form-field>
+        <div class="form-field-group" *ngIf="productForm.get('card.type').value === 'Creature'">
+          <mat-form-field appearance="outline">
+            <mat-label>Power</mat-label>
+            <input matInput formControlName="power" type="number" placeholder="0">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Toughness</mat-label>
+            <input matInput formControlName="toughness" type="number" placeholder="0">
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" *ngIf="productForm.get('card.type').value === 'Planeswalker'">
+          <mat-label>Loyalty</mat-label>
+          <input matInput formControlName="loyalty" type="number" placeholder="0">
         </mat-form-field>
       </div>
-      <mat-form-field appearance="outline">
-        <mat-label>Converted mana cost</mat-label>
-        <input matInput formControlName="manaCost" type="number" placeholder="0">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Set</mat-label>
-        <input matInput formControlName="set">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Oracle text</mat-label>
-        <textarea matInput formControlName="oracleText" style="height: 4rem"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Flavour text</mat-label>
-        <textarea matInput formControlName="flavourText" style="height: 4rem"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Artist</mat-label>
-        <input matInput formControlName="artist">
-      </mat-form-field>
-      <div class="form-field-group" *ngIf="productForm.get('card.type').value === 'Creature'">
-        <mat-form-field appearance="outline">
-          <mat-label>Power</mat-label>
-          <input matInput formControlName="power" type="number" placeholder="0">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Toughness</mat-label>
-          <input matInput formControlName="toughness" type="number" placeholder="0">
-        </mat-form-field>
+      <div [title]="'Upload an image'">
+        <app-upload (fileGroupCodeEvent)="updateProductFiles($event)" [resetFormSubject]="resetFormSubject"></app-upload>
       </div>
-      <mat-form-field appearance="outline" *ngIf="productForm.get('card.type').value === 'Planeswalker'">
-        <mat-label>Loyalty</mat-label>
-        <input matInput formControlName="loyalty" type="number" placeholder="0">
-      </mat-form-field>
-    </div>
-    <div [title]="'Upload an image'">
-      <app-upload (fileGroupCodeEvent)="updateProductFiles($event)" [resetFormSubject]="resetFormSubject"></app-upload>
-    </div>
     </app-content-section>
     <div class="bottom-actions-container">
       <button mat-flat-button color="primary" type="submit">Save</button>

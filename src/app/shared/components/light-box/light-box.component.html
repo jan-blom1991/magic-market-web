@@ -1,0 +1,11 @@
+<ng-container *ngIf="active">
+  <app-button *ngIf="!disableCross"
+              class="close-button"
+              shape="circle"
+              size="tiny"
+              icon="close"
+              (action)="active = false"></app-button>
+  <div class="lightbox-content">
+    <ng-content></ng-content>
+  </div>
+</ng-container>

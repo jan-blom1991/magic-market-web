@@ -3,5 +3,6 @@ export enum Path {
   HOME = 'home',
   MANAGE_PRODUCTS = 'products',
   MAINTAIN_PRODUCT = 'products/maintain',
-  LOGIN = 'login'
+  LOGIN = 'login',
+  ERROR = 'error'
 }

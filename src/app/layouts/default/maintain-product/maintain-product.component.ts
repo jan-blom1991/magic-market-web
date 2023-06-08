@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../../services/product.service';
 import {FileService} from '../../../services/file.service';
-import {Routed} from '../../../domain/routed';
-import {Path} from '../../../domain/path';
+import {Routed} from '../../../shared/models/routed';
+import {Path} from '../../../shared/models/path';
 import {ProductCategoryService} from '../../../services/product-category.service';
 import {CardColorService} from '../../../services/card-color.service';
 import {CardTypeService} from '../../../services/card-type.service';
@@ -89,7 +89,7 @@ export class MaintainProductComponent extends Routed implements OnInit {
       this.resetFormSubject.next(true);
 
       if (!this.addAnother) {
-        this.router.navigateByUrl('/' + Path.MANAGE_PRODUCTS);
+        this.router.navigateByUrl(Path.MANAGE_PRODUCTS);
       }
     });
   }

@@ -4,7 +4,8 @@ import {Observable} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {SortDirection} from '@angular/material/sort';
 import {BaseService} from './base-service.service';
-import {ResponseData} from '../domain/response-data';
+import {ResponseData} from '../shared/models/response-data';
+import {ProgressBarService} from "./progress-bar.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class ProductService extends BaseService {
 
   private serviceUrl = this.baseUrl + '/products';
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+  constructor(httpClient: HttpClient, progressBarService: ProgressBarService) {
+    super(httpClient, progressBarService);
   }
 
   getProduct(id: number): Observable<ResponseData> {

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Routed} from "../../../domain/routed";
-import {Path} from "../../../domain/path";
-import {Icon} from "../../../domain/icon";
-import {TableData} from "../../../domain/table-data";
+import {Routed} from "../../../shared/models/routed";
+import {Path} from "../../../shared/models/path";
+import {Icon} from "../../../shared/models/icon";
+import {TableData} from "../../../shared/models/table-data";
 import {TableBuilder} from "../../../shared/logic/table-builder";
 import {TableDataService} from "../../../services/table-data.service";
 
@@ -69,7 +69,6 @@ export class HomeComponent implements OnInit, Routed {
   }
 
   testFunction(index: number): void {
-    console.log(this.tableData);
   }
 }
 export interface TestParent {

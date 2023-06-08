@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+.login-content {
+  margin: 1rem 0;
+
+  .register-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+
+    a {
+      font-weight: 600;
+      color: mat.get-color-from-palette($accent);
+    }
+  }
+
+  app-button {
+    width: 100%;
+  }
+}

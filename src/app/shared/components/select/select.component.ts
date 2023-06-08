@@ -23,7 +23,11 @@ export class SelectComponent {
     this._value = option;
   }
 
-  determineSize(): string {
+  determineSize(): number {
+    if (!this.options) {
+      return 50;
+    }
+
     const option = this.options
       .map(option => option.toString())
       .reduce((a, b) => {

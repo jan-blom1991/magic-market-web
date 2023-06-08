@@ -1,0 +1,20 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+
+  .error-content {
+    display: flex;
+    align-items: center;
+    margin: 5rem 0;
+
+    .error-status {
+      font-size: 4rem;
+      border-bottom: 1px solid $text;
+    }
+
+    .error-content {
+
+    }
+  }
+}

@@ -1,7 +1,7 @@
-import {Column, TableData} from "../../domain/table-data";
-import {ColumnType} from "../../domain/column-type";
-import {Path} from "../../domain/path";
-import {Icon} from "../../domain/icon";
+import {Column, TableData} from "../models/table-data";
+import {ColumnType} from "../models/column-type";
+import {Path} from "../models/path";
+import {Icon} from "../models/icon";
 
 export class TableBuilder<T extends object> {
   data: TableData<T> = new TableData();

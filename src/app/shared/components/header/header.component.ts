@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Path} from '../../../domain/path';
+import {Path} from '../../models/path';
 
 @Component({
   selector: 'app-header',

@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Routed} from '../../../domain/routed';
-import {Path} from '../../../domain/path';
+import {Routed} from '../../../shared/models/routed';
+import {Path} from '../../../shared/models/path';
 import {ProductService} from '../../../services/product.service';
-import {ProductOverview} from '../../../domain/product-overview';
+import {ProductOverview} from '../../../shared/models/product-overview';
 import {TableBuilder} from "../../../shared/logic/table-builder";
-import {TableDataRequest} from "../../../shared/components/table/table.component";
-import {Row, TableData} from "../../../domain/table-data";
+import {TableData} from "../../../shared/models/table-data";
 import {TableDataService} from "../../../services/table-data.service";
 
 @Component({

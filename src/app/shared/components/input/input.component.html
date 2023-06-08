@@ -2,7 +2,16 @@
   <ng-content></ng-content>
 </div>
 <div class="input-container">
-  <input [id]="name" [type]="type" [readOnly]="readOnly" [required]="required" placeholder=" ">
+  <input #input
+         [id]="name"
+         [type]="type"
+         [(ngModel)]="value"
+         [readOnly]="readOnly"
+         [required]="required"
+         placeholder=" "
+         (input)="writeValue(input.value)"
+         (change)="writeValue(input.value)"
+         (blur)="onTouched()">
   <label *ngIf="!noLabel" [for]="name" class="input-label">{{name}}</label>
 </div>
 <div class="suffix-container">

@@ -1,0 +1,9 @@
+<app-content-block title="Oops!" useProgressBar="false">
+  <app-content-section class="error-content">
+    <div class="error-status">{{statusCode + ' - ' + statusPhrase}}</div>
+    <div class="error-message">{{message}}</div>
+    <app-button color="accent" shape="circle" size="large" appearance="filled">
+      <mat-icon class="material-symbols-outlined size-huge">home</mat-icon>
+    </app-button>
+  </app-content-section>
+</app-content-block>

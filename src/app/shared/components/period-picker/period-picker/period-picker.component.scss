@@ -1,0 +1,104 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+
+  .period-picker-lightbox {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+
+    .period-header {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 0.5rem;
+      gap: 2rem;
+
+      .header-year {
+        padding: 0 1rem;
+        cursor: pointer;
+      }
+
+      mat-icon {
+        cursor: pointer;
+
+        &:hover {
+          color: mat.get-color-from-palette($accent);
+        }
+      }
+
+      border-bottom: 1px solid darken($base, 15%);
+      margin-bottom: 0.5rem;
+    }
+
+    .period-overview {
+      height: 7rem;
+      overflow: hidden;
+
+      div {
+        font-size: 0.875rem;
+        display: grid;
+        grid-template-columns: 3rem 3rem 3rem 3rem;
+        width: 100%;
+        grid-gap: 0.5rem;
+        transition: visibility 0.3s, transform 0.3s ease;
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 2rem;
+          border-radius: 0.75rem;
+          cursor: pointer;
+        }
+
+        &.month-overview {
+          transform: translateY(100%);
+          visibility: hidden;
+
+          div {
+            &:hover {
+              border: 1px solid mat.get-color-from-palette($accent, 300);
+            }
+
+            &.current-month {
+              background-color: mat.get-color-from-palette($accent);
+              border: 1px solid mat.get-color-from-palette($accent, 300);
+              color: $base;
+            }
+          }
+
+          &.mode-active {
+            transform: translateY(0);
+            visibility: visible;
+          }
+        }
+
+        &.year-overview {
+          transform: translateY(-200%);
+          visibility: hidden;
+
+          div {
+            &:hover {
+              border: 1px solid mat.get-color-from-palette($primary, 300);
+            }
+
+            &.current-year {
+              background-color: mat.get-color-from-palette($primary);
+              border: 1px solid mat.get-color-from-palette($primary, 300);
+              color: $base;
+            }
+          }
+
+          &.mode-active {
+            transform: translateY(-100%);
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}

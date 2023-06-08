@@ -15,7 +15,7 @@ import {
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi:true,
+      multi: true,
       useExisting: InputComponent
     },
     {
@@ -32,13 +32,16 @@ export class InputComponent implements OnInit, ControlValueAccessor, Validator {
   @Input() hasPrefix: string | boolean;
   @Input() noLabel: string | boolean;
   @Input() readOnly: string | boolean;
+  @Input() value: string;
 
-  value: string;
-  onChange = (value) => {};
-  onTouched = () => {};
-  touched = false;
   disabled = false;
   valid: boolean;
+  onChange = (_: any) => { };
+  onTouched = () => { };
+
+  // constructor(@Self() @Optional() public control: NgControl) {
+  //   this.control && (this.control.valueAccessor = this);
+  // }
 
   ngOnInit(): void {
     this.required = this.required != undefined
@@ -47,23 +50,17 @@ export class InputComponent implements OnInit, ControlValueAccessor, Validator {
     this.readOnly = this.readOnly != undefined
   }
 
-  registerOnChange(onChange: any): void {
-    this.onChange(onChange);
+  public registerOnChange(fn: any): void {
+    this.onChange = fn;
   }
 
-  registerOnTouched(onTouched: any): void {
-    this.onTouched()
+  public registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   writeValue(value: any): void {
-    this.value = value;
-  }
-
-  markAsTouched() {
-    if (!this.touched) {
-      this.onTouched();
-      this.touched = true;
-    }
+    this.onChange(value);
+    this.onTouched();
   }
 
   setDisabledState(disabled: boolean) {

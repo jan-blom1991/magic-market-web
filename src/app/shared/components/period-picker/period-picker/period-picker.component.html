@@ -1,0 +1,24 @@
+<app-input name="Period" type="text" [value]="getPeriod()" (click)="active = !active" readOnly>
+  <mat-icon class="size-small">calendar_month</mat-icon>
+</app-input>
+<app-light-box [active]="active" disableCross="true" class="period-picker-lightbox">
+  <div class="period-header">
+    <mat-icon class="size-medium" (click)="getYear(-1)">arrow_left</mat-icon>
+    <div class="header-year" (click)="switchMode()">{{currentYear}}</div>
+    <mat-icon class="size-medium" (click)="getYear(1)">arrow_right</mat-icon>
+  </div>
+  <div class="period-overview">
+    <div class="month-overview" [ngClass]="mode === 'month' ? 'mode-active' : ''">
+      <div *ngFor="let month of months | keyvalue"
+           (click)="this.currentMonth = month.key; this.active = false"
+           [ngClass]="this.currentMonth === month.key ? 'current-month' : ''">
+        {{month.value}}</div>
+    </div>
+    <div class="year-overview" [ngClass]="mode === 'year' ? 'mode-active' : ''">
+      <div *ngFor="let year of years"
+           (click)="this.currentYear = year; switchMode()"
+           [ngClass]="this.currentYear === year ? 'current-year' : ''">
+        {{year}}</div>
+    </div>
+  </div>
+</app-light-box>

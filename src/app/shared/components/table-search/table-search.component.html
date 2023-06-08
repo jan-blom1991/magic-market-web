@@ -10,7 +10,7 @@
       <mat-option *ngFor="let col of columns" [value]="col">{{col}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <app-button color="primary" appearance="stroked" shape="circle" (stuff)="toggleSortDirection()">
+  <app-button color="primary" appearance="stroked" shape="circle" (action)="toggleSortDirection()">
     <mat-icon class="material-symbols-outlined size-medium" [style]="toggleSortDirection()">arrow_upward</mat-icon>
   </app-button>
   <app-button color="primary" appearance="stroked" shape="circle" (click)="toggleFilter()">

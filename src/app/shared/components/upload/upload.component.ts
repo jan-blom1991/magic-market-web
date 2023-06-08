@@ -1,7 +1,7 @@
-import {Component, HostListener, OnInit, Output, EventEmitter, Input, OnChanges} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {FileService} from '../../../services/file.service';
 import {HttpEvent, HttpEventType, HttpResponse, HttpUploadProgressEvent} from '@angular/common/http';
-import {UploadData} from '../../../domain/upload-data';
+import {UploadData} from '../../models/upload-data';
 import {from, Observable, Subject} from 'rxjs';
 import {concatMap, tap} from 'rxjs/operators';
 
@@ -56,8 +56,7 @@ export class UploadComponent implements OnInit {
 
               this.fileGroupCode = event.body.body.item.fileGroupCode;
             }
-          })
-        );
+        }));
       })
     ).subscribe(() => {
       this.fileGroupCodeEvent.emit(this.fileGroupCode);
@@ -74,7 +73,6 @@ export class UploadComponent implements OnInit {
     if (fileData.id) {
       this.fileService.delete(fileData.id);
     }
-
     this.uploads.splice(index, 1);
   }
 

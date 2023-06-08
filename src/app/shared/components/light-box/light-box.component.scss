@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+@keyframes open-lightbox{
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 100%;
+  }
+}
+
+@keyframes close-lightbox{
+  0% {
+    transform: scale(1);
+    opacity: 100%;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+
+:host {
+  display: flex;
+  background: $base;
+  box-shadow: $border-shadow;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 1rem;
+  z-index: 1000;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  .close-button {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+
+    button {
+      background-color: darken($base, 10%);
+      box-shadow: darken($base, 15%) 0 2px 7px -4px;
+    }
+  }
+
+  &.active-false {
+    animation-name: close-lightbox;
+  }
+
+  &.active-true {
+    animation-name: open-lightbox;
+  }
+}

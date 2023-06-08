@@ -29,27 +29,38 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { TableSearchComponent } from './components/table-search/table-search.component';
+import {TableSearchComponent} from './components/table-search/table-search.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatSortModule} from "@angular/material/sort";
-import { InputComponent } from './components/input/input.component';
-import { SelectComponent } from './components/select/select.component';
+import {InputComponent} from './components/input/input.component';
+import {SelectComponent} from './components/select/select.component';
+import {ProgressBarComponent} from './components/progress-bar/progress-bar.component';
+import {MessageComponent} from './components/message/message.component';
+import {ContentBlockComponent} from "./components/content/content-block/content-block.component";
+import {LightBoxComponent} from './components/light-box/light-box.component';
+import {PeriodPickerComponent} from './components/period-picker/period-picker/period-picker.component';
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    SidebarComponent,
-    FooterComponent,
-    TableComponent,
+    ActionComponent,
+    ButtonComponent,
+    ContentBlockComponent,
     ContentHeaderComponent,
     ContentSectionComponent,
-    ButtonComponent,
-    ActionComponent,
-    UploadComponent,
-    TableSearchComponent,
+    FooterComponent,
+    HeaderComponent,
     InputComponent,
-    SelectComponent
+    MessageComponent,
+    ProgressBarComponent,
+    SelectComponent,
+    SidebarComponent,
+    TableComponent,
+    TableSearchComponent,
+    UploadComponent,
+    LightBoxComponent,
+    PeriodPickerComponent
   ],
   imports: [
     CommonModule,
@@ -76,20 +87,28 @@ import { SelectComponent } from './components/select/select.component';
     MatSelectModule,
     MatRadioModule,
     MatSortModule,
-    MatRippleModule
+    MatRippleModule,
+    MatStepperModule
   ],
-    exports: [
-        HeaderComponent,
-        SidebarComponent,
-        FooterComponent,
-        TableComponent,
-        ContentHeaderComponent,
-        ContentSectionComponent,
-        UploadComponent,
-        TableSearchComponent,
-        ButtonComponent,
-        InputComponent,
-        SelectComponent,
-    ]
+  exports: [
+    ActionComponent,
+    ButtonComponent,
+    ContentBlockComponent,
+    ContentHeaderComponent,
+    ContentSectionComponent,
+    FooterComponent,
+    HeaderComponent,
+    InputComponent,
+    MessageComponent,
+    ProgressBarComponent,
+    SelectComponent,
+    SidebarComponent,
+    TableComponent,
+    TableSearchComponent,
+    UploadComponent,
+    LightBoxComponent,
+    PeriodPickerComponent
+  ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

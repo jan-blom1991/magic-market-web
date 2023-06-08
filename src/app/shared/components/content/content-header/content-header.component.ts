@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {MessageData} from '../../../../domain/message-data';
+import {MessageData} from '../../../models/message-data';
 import {MessageService} from '../../../../services/message.service';
-import {trigger, transition, style, animate, state} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-content-header',

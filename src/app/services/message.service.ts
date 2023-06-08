@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {MessageData} from '../domain/message-data';
-import {ResponseData} from '../domain/response-data';
+import {MessageData} from '../shared/models/message-data';
+import {ResponseData} from '../shared/models/response-data';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,8 @@ export class MessageService {
 
   updateMessage(responseData: ResponseData): void {
     this.messageSubject.next({
-      statusCode: responseData.statusCode,
-      statusPhrase: responseData.statusPhrase,
       severity: responseData.severity,
-      message: responseData.message,
-      errors: responseData.errors
+      message: responseData.message
     });
   }
 

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, BehaviorSubject} from 'rxjs';
-import {User} from '../domain/user';
-import {ResponseData} from '../domain/response-data';
+import {Observable} from 'rxjs';
+import {User} from '../shared/models/user';
+import {ResponseData} from '../shared/models/response-data';
 import {BaseService} from './base-service.service';
-import {FormGroup} from '@angular/forms';
+import {ProgressBarService} from "./progress-bar.service";
 
 
 @Injectable({
@@ -14,8 +14,8 @@ export class UserService extends BaseService {
 
   protected serviceUrl = this.baseUrl + '/users';
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+  constructor(httpClient: HttpClient, progressBarService: ProgressBarService) {
+    super(httpClient, progressBarService);
   }
 
   getUser(emailAddress: string, password: string): Observable<ResponseData> {

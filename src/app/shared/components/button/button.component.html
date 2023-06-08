@@ -1,6 +1,8 @@
 <button matRipple
         [class]="determineClass()"
+        [type]="type"
         [disabled]="isDisabled"
-        (click)="stuff.emit($event)">
+        (click)="action.emit($event)">
   <ng-content></ng-content>
+  <mat-icon *ngIf="icon" class="material-symbols-outlined">{{icon}}</mat-icon>
 </button>

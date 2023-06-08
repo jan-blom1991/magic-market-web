@@ -2,9 +2,9 @@ import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} f
 import {MatSort, SortDirection} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {SelectionModel} from '@angular/cdk/collections';
-import {FileData} from "../../../domain/file-data";
-import {ColumnType} from "../../../domain/column-type";
-import {Row, TableData} from "../../../domain/table-data";
+import {FileData} from "../../models/file-data";
+import {ColumnType} from "../../models/column-type";
+import {Row, TableData} from "../../models/table-data";
 import {merge} from "rxjs";
 import {TableDataService} from "../../../services/table-data.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -28,7 +28,7 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
   @Input() isEditable = false;
   @Input() isPageable = false;
   @Input() pageSizeOptions: number[] = [5, 10, 15];
-  @Input() pageSize = this.pageSizeOptions[1];
+  @Input() pageSize = this.pageSizeOptions[0];
 
   constructor(
     private tableDataService: TableDataService,
@@ -54,24 +54,24 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
           sortColumn: this.sort.active,
           sortOrder: this.sort.direction,
           pageIndex: this.paginator.pageIndex,
-          pageSize: this.pageSize
+          pageSize: this.paginator.pageSize
         });
       });
 
     this.sort.sortChange.subscribe(() => {
       this.paginator.pageIndex = 0
-      this.tableData.rows = [];
     });
 
     this.sort.active = this.tableData.columns.find(column => column.isSortable).name;
     this.sort.direction = 'desc';
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
     this.sort.sortChange.emit();
     this.changeDetector.detectChanges();
   }
 
   public fillRows(data: any) {
+    this.tableData.rows = [];
+
     data.items.forEach(element => {
       const row = new Row<T>();
       row.index = data.items.indexOf(element);

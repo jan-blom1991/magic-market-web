@@ -28,6 +28,16 @@
   }
 }
 
+@mixin size($buttonSize: 2.5rem, $iconSize: 1.5rem) {
+  height: $buttonSize;
+
+  mat-icon {
+    font-size: $iconSize;
+    height: $iconSize;
+    width: $iconSize;
+  }
+}
+
 :host {
   display: inline-block;
 
@@ -36,7 +46,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    height: 2.5rem;
     font-family: Quicksand, sans-serif;
     font-size: 1rem;
     font-weight: 500;
@@ -46,6 +55,7 @@
     cursor: pointer;
     user-select: none;
     background-position: center;
+    width: inherit;
 
     &.color-primary {
       @include color($primary);
@@ -68,7 +78,7 @@
     }
 
     &.shape-circle {
-      width: 2.5rem;
+      aspect-ratio: 1/1;
       padding: 0;
       border-radius: 50%;
     }
@@ -76,6 +86,22 @@
     &.shape-rectangle {
       padding: 0 0.75rem;
       border-radius: 5px;
+    }
+
+    &.size-tiny {
+      @include size(1.25rem, 1rem);
+    }
+
+    &.size-small {
+      @include size(2rem, 1.5rem);
+    }
+
+    &.size-medium {
+      @include size(2.5rem, 2rem);
+    }
+
+    &.size-large {
+      @include size(4rem, 2.5rem);
     }
   }
 }

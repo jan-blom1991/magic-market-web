@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -6,12 +6,14 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent {
-  @Input() size: ButtonSize = 'small';
+  @Input() type: string = 'button';
+  @Input() size: ButtonSize = 'medium';
   @Input() color: ButtonColor = 'primary';
   @Input() shape: ButtonShape;
   @Input() appearance: ButtonAppearance;
+  @Input() icon: string;
   @Input() isDisabled = false;
-  @Output() stuff = new EventEmitter();
+  @Output() action = new EventEmitter();
 
   determineClass(): string[] {
     return [
@@ -23,7 +25,7 @@ export class ButtonComponent {
   }
 }
 
-declare type ButtonSize = 'small' | 'large' | undefined;
-declare type ButtonColor = 'primary' | 'accent' | 'info' | 'success' | 'error' | undefined;
+declare type ButtonSize = 'tiny' | 'small' | 'medium' | 'large' | undefined;
+export type ButtonColor = 'primary' | 'accent' | 'info' | 'success' | 'error' | undefined;
 declare type ButtonShape = 'circle' | 'rectangle' | undefined;
 declare type ButtonAppearance = 'filled' | 'stroked' | undefined;

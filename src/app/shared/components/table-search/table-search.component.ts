@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {TableData} from "../../../domain/table-data";
+import {TableData} from "../../models/table-data";
 
 @Component({
   selector: 'app-table-search',
@@ -20,7 +20,6 @@ export class TableSearchComponent<T> {
   }
 
   toggleSortDirection() {
-    console.log('bajsdfobnafb')
     this.flip = this.flip * -1;
     return { transform: 'scaleY(' + this.flip + ')' };
   }

@@ -1,0 +1,70 @@
+@use 'node_modules/@angular/material/index' as mat;
+@import "src/styles/theme";
+
+@mixin color($color) {
+  background: mat.get-color-from-palette($color);
+
+  .progress-indicator {
+    background: linear-gradient(200deg,
+      mat.get-color-from-palette($color) 25%,
+      mat.get-color-from-palette($color, 100) 50%,
+      mat.get-color-from-palette($color) 75%
+    );
+  }
+}
+
+@keyframes move-horizontal {
+  from {
+    transform: translateX(-75%);
+  }
+  to {
+    transform: translateX(75%);
+  }
+}
+
+:host {
+  width: 100%;
+  height: 2px;
+  overflow-x: hidden;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  transition: opacity 0.3s ease-in-out;
+
+  .progress-indicator {
+    width: inherit;
+    height: inherit;
+    animation-name: move-horizontal;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    z-index: 1;
+  }
+
+  &.color-primary {
+    @include color($primary);
+  }
+
+  &.color-accent {
+    @include color($accent);
+  }
+
+  &.color-info {
+    @include color($info);
+  }
+
+  &.color-success {
+    @include color($success);
+  }
+
+  &.color-error {
+    @include color($error);
+  }
+
+  &.active-true {
+    opacity: 100%;
+  }
+
+  &.active-false {
+    opacity: 0;
+  }
+}

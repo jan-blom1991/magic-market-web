@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+@import "src/styles/theme";
+
+:host {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 4rem;
+  height: 3.5rem;
+  overflow: visible;
+
+  .lightbox-message {
+    padding-right: 1rem;
+  }
+
+  &.color-success app-light-box {
+    border-bottom: 2px solid mat.get-color-from-palette($success);
+
+    mat-icon {
+      color: mat.get-color-from-palette($success);
+    }
+  }
+
+  &.color-info app-light-box {
+    border-bottom: 2px solid mat.get-color-from-palette($info);
+
+    mat-icon {
+      color: mat.get-color-from-palette($info);
+    }
+  }
+
+  &.color-error app-light-box {
+    border-bottom: 2px solid mat.get-color-from-palette($error);
+
+    mat-icon {
+      color: mat.get-color-from-palette($error);
+    }
+  }
+}
