@@ -4,15 +4,15 @@
 :host {
   display: flex;
   align-self: center;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   bottom: 4rem;
   height: 3.5rem;
-  overflow: visible;
 
-  .lightbox-message {
-    padding-right: 1rem;
+  .message-container {
+    display: flex;
+    align-items: center;
+    padding-right: 2rem;
+    gap: 1rem;
   }
 
   &.color-success app-light-box {

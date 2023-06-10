@@ -25,11 +25,9 @@
 
 
 :host {
-  display: flex;
   background: $base;
   box-shadow: $border-shadow;
   border-radius: 5px;
-  overflow: hidden;
   padding: 1rem;
   z-index: 1000;
   animation-duration: 300ms;

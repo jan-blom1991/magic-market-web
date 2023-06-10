@@ -30,7 +30,7 @@ export class MessageComponent implements OnInit {
 
   openLightBox(): void {
     this._active = true;
-    // setTimeout(() => this.closeLightBox(), 7000);
+    setTimeout(() => this.closeLightBox(), 7000);
   }
 
   closeLightBox(): void {
@@ -43,8 +43,8 @@ export class MessageComponent implements OnInit {
     this.messageService.getMessageData().subscribe(messageData => {
       if (messageData && messageData.message) {
         this.messageData = messageData;
-        this._color = messageData.severity.toLowerCase();
-        this._icon = messageData.severity === ResponseSeverity.ERROR ? 'error' : 'check_circle'
+        this._color = ResponseSeverity[messageData.severity];
+        this._icon = ResponseSeverity[messageData.severity] === ResponseSeverity.ERROR ? 'error' : 'check_circle'
         this.openLightBox()
       }
     });
