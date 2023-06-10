@@ -1,9 +1,10 @@
-@use '@angular/material' as mat;
+@use 'node_modules/@angular/material/index' as mat;
 @import "src/styles/theme";
 
 :host {
 
   .period-picker-lightbox {
+    position: absolute;
     width: fit-content;
     display: flex;
     flex-direction: column;

@@ -39,7 +39,7 @@ import {ProgressBarComponent} from './components/progress-bar/progress-bar.compo
 import {MessageComponent} from './components/message/message.component';
 import {ContentBlockComponent} from "./components/content/content-block/content-block.component";
 import {LightBoxComponent} from './components/light-box/light-box.component';
-import {PeriodPickerComponent} from './components/period-picker/period-picker/period-picker.component';
+import {PeriodPickerComponent} from './components/period-picker/period-picker.component';
 import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
