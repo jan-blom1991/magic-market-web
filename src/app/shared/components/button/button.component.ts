@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ColorType} from "../../models/types";
 
 @Component({
   selector: 'app-button',
@@ -8,7 +9,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ButtonComponent {
   @Input() type: string = 'button';
   @Input() size: ButtonSize = 'medium';
-  @Input() color: ButtonColor = 'primary';
+  @Input() color: ColorType = 'primary';
   @Input() shape: ButtonShape;
   @Input() appearance: ButtonAppearance;
   @Input() icon: string;
@@ -26,6 +27,5 @@ export class ButtonComponent {
 }
 
 declare type ButtonSize = 'tiny' | 'small' | 'medium' | 'large' | undefined;
-export type ButtonColor = 'primary' | 'accent' | 'info' | 'success' | 'error' | undefined;
 declare type ButtonShape = 'circle' | 'rectangle' | undefined;
 declare type ButtonAppearance = 'filled' | 'stroked' | undefined;

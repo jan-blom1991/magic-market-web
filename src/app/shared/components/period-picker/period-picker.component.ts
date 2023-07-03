@@ -9,18 +9,21 @@ import {ColorType} from "../../models/types";
 export class PeriodPickerComponent {
   private _currentYear: number = new Date().getFullYear();
   private _currentMonth: number = new Date().getMonth();
-  private _years: number[] = Array.from({length: 120}, (_, i) => (this._currentYear - 71) + i++);
+
+  public selectedYear: number = this._currentYear;
+  public selectedMonth: number = this._currentMonth - 1;
+  public mode: PickerModeType = 'year';
+  public color: ColorType = 'primary';
+  public active: boolean = false;
+
+  private _years: number[] = Array.from(
+    {length: 120}, (_, i) => (this._currentYear - 71) + i++
+  );
   private _months: Map<number, string> = new Map([
     [1, 'jan'], [2, 'feb'], [3, 'mar'], [4, 'apr'],
     [5, 'may'], [6, 'jun'], [7, 'jul'], [8, 'aug'],
     [9, 'sep'], [10, 'okt'], [11, 'nov'], [12, 'dec']
     ]);
-
-  public selectedYear: number = this._currentYear;
-  public selectedMonth: number = this._currentMonth - 1;
-  public color: ColorType = 'primary';
-  public active: boolean = true;
-  public mode: PickerModeType = 'year';
 
   get years(): number[] {
     return this._years.slice((this.selectedYear - (this._currentYear - 65)) -5, (this.selectedYear - (this._currentYear - 65)) + 7);

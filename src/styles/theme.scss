@@ -3,32 +3,19 @@
 
 @include mat.core();
 
-$base: #f3f3f3;
-$text: #828282;
 $primary: mat.define-palette(mat.$teal-palette);
 $accent: mat.define-palette(mat.$amber-palette);
 $info: mat.define-palette(mat.$blue-palette);
 $success: mat.define-palette(mat.$light-green-palette);
 $error: mat.define-palette(mat.$red-palette);
+$neutral: mat.define-palette(mat.$grey-palette);
+
+$base: mat.get-color-from-palette($neutral, 100);
+$text: mat.get-color-from-palette($neutral, 600);
+$border-shadow: mat.get-color-from-palette($neutral, 300) 0 2px 12px -3px;
+$border-radius: 0.375rem;
 
 $theme: mat.define-light-theme((
-  color: (
-    primary: $primary,
-    accent: $accent,
-    info: $info,
-    success: $success,
-    error: $error
-  ),
+  color: (primary: $primary, accent: $accent, info: $info, success: $success, error: $error, neutral: $neutral),
   density: 0
 ));
-
-// Emit theme-dependent styles for common features used across multiple components.
-@include mat.core-theme($theme);
-
-// Emit styles for MatButton based on `$my-theme`. Because the configuration
-// passed to `define-light-theme` omits typography, `button-theme` will not
-// emit any typography styles.
-@include mat.button-theme($theme);
-
-$border-shadow: darken($base, 15%) 0 2px 12px -3px;
-$border-radius: 0.375rem;

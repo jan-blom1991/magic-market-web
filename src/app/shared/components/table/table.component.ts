@@ -17,9 +17,9 @@ import {MatTableDataSource} from "@angular/material/table";
 export class TableComponent<T> implements OnInit, AfterViewInit {
   public dataSource = new MatTableDataSource<Row<T>>([])
   public selection = new SelectionModel<Row<T>>(true, []);
-  public isLoading = false;
   public displayedColumns: string[];
   public columnType = ColumnType;
+  public isLoading = false;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -84,7 +84,7 @@ export class TableComponent<T> implements OnInit, AfterViewInit {
   }
 
   createFileUrl(fileData: FileData): string {
-    return 'data:' + fileData.contentType + ';base64,' + fileData.bytes;
+    return fileData ? 'data:' + fileData.contentType + ';base64,' + fileData.bytes : '';
   }
 
   determineHasColumnHeader(type: ColumnType): boolean {

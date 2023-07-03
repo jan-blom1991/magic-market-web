@@ -88,6 +88,7 @@
       transition: max-height 0.2s ease-in, opacity 0.2s ease-in;
       border-radius: 0 0 $border-radius $border-radius;
       background: $base;
+      box-shadow: $border-shadow;
 
       .option-content {
         display: flex;

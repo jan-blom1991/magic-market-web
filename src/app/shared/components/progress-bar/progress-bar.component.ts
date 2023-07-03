@@ -1,5 +1,6 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {ProgressBarService} from "../../../services/progress-bar.service";
+import {ColorType} from "../../models/types";
 
 @Component({
   selector: 'app-progress-bar',
@@ -8,7 +9,7 @@ import {ProgressBarService} from "../../../services/progress-bar.service";
 })
 export class ProgressBarComponent implements OnInit {
   private _active: boolean = false;
-  private _color: ProgressBarColor;
+  private _color: ColorType;
 
   @HostBinding('class') get classes(): string {
     return 'active-' + this._active + ' ' + 'color-' + this._color;
@@ -21,5 +22,3 @@ export class ProgressBarComponent implements OnInit {
     this.progressBarService.active$.subscribe(value => this._active = value);
   }
 }
-
-export declare type ProgressBarColor = 'primary' | 'accent' | 'info' | 'success' | 'error';

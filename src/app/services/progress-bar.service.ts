@@ -1,15 +1,15 @@
 import {Injectable} from "@angular/core";
 import {BehaviorSubject} from "rxjs";
-import {ProgressBarColor} from "../shared/components/progress-bar/progress-bar.component";
+import {ColorType} from "../shared/models/types";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgressBarService {
   active$ = new BehaviorSubject<boolean>(false);
-  color$ = new BehaviorSubject<ProgressBarColor>('primary');
+  color$ = new BehaviorSubject<ColorType>('primary');
 
-  activate(color?: ProgressBarColor) {
+  activate(color?: ColorType) {
     if (color) {
       this.color$.next(color);
     } else {
@@ -18,7 +18,7 @@ export class ProgressBarService {
     this.active$.next(true);
   }
 
-  terminate(color: ProgressBarColor) {
+  terminate(color: ColorType) {
     setTimeout(() => this.color$.next(color), 200);
     setTimeout(() => this.active$.next(false), 1000);
   }
